@@ -1,0 +1,18 @@
+{
+  "behavior_unchanged": true,
+  "method": "canonical JSON of analyze() compared byte-for-byte with baseline.json",
+  "post_architecture": {
+    "canonical_digest": "cf98ebf27fcaaa03bc2531e1b203c1a10661e5ff21d700bc06ee9d95a2bee05f",
+    "cases": 22,
+    "matches": 22,
+    "mismatches": []
+  },
+  "pre_architecture": {
+    "canonical_digest": "cf98ebf27fcaaa03bc2531e1b203c1a10661e5ff21d700bc06ee9d95a2bee05f",
+    "cases": 22,
+    "matches": 22,
+    "mismatches": []
+  },
+  "purpose": "Behavior identity proof for the improve-codebase-architecture pass",
+  "ruling": "ACCEPT: no function changed during the architecture pass"
+}

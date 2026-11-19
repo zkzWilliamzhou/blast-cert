@@ -1,0 +1,6454 @@
+{
+  "commands": {
+    ".": {
+      "arg_rules": [],
+      "base": [
+        "CODE_EVAL",
+        "CODE_EXEC_OPAQUE"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          ". /tmp/x"
+        ]
+      },
+      "value_flags": []
+    },
+    ":": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          ":"
+        ]
+      },
+      "value_flags": []
+    },
+    "__default__": {
+      "arg_rules": [],
+      "base": [
+        "CODE_EXEC_OPAQUE",
+        "UNKNOWN_EFFECT"
+      ],
+      "family": "unknown",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "madeup --flag"
+        ]
+      },
+      "value_flags": []
+    },
+    "alias": {
+      "arg_rules": [],
+      "base": [
+        "CODE_DYNAMIC_DISPATCH"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "alias rm='rm -i'"
+        ]
+      },
+      "value_flags": []
+    },
+    "apt": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "apt --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "apt-get": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "apt-get --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "at": {
+      "arg_rules": [],
+      "base": [
+        "PERSISTENCE"
+      ],
+      "family": "scheduler",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--now": [],
+        "--user": [],
+        "-b": [],
+        "-c": [],
+        "-e": [],
+        "-f": [],
+        "-i": [],
+        "-l": [],
+        "-m": [],
+        "-r": [],
+        "-u": [],
+        "disable": [],
+        "enable": [],
+        "restart": [],
+        "start": [],
+        "stop": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "echo '@reboot bash /tmp/x' | crontab -"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-f",
+        "-c"
+      ]
+    },
+    "awk": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-F": [],
+        "-f": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "awk '{print $1}' README.md"
+        ]
+      },
+      "value_flags": [
+        "-F",
+        "-f",
+        "-v"
+      ]
+    },
+    "base64": {
+      "arg_rules": [],
+      "base": [],
+      "family": "encoder",
+      "flags": {
+        "--decode": [],
+        "--help": [],
+        "-d": [],
+        "-e": [],
+        "-i": [],
+        "-w": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "echo aWQK | base64 -d | sh"
+        ]
+      },
+      "value_flags": [
+        "-w"
+      ]
+    },
+    "basename": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "basename --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "basename /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "bash": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "bash script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    },
+    "brew": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "brew --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "bun": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [
+          "CODE_EVAL"
+        ],
+        "-i": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "bun --version"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-c"
+      ]
+    },
+    "bunzip2": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "bunzip2 --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "cargo": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "cargo --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "cat": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "cat --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "cat /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "cc": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "cc --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "chgrp": {
+      "arg_rules": [],
+      "base": [
+        "FS_CHOWN"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-R": [],
+        "-c": [],
+        "-f": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "chgrp staff /tmp/x"
+        ]
+      },
+      "value_flags": []
+    },
+    "chmod": {
+      "arg_rules": [],
+      "base": [
+        "FS_CHMOD"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "--reference": [],
+        "-R": [
+          "FS_DELETE_RECURSIVE"
+        ],
+        "-c": [],
+        "-f": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "chmod -R 777 /etc"
+        ]
+      },
+      "value_flags": [
+        "--reference"
+      ]
+    },
+    "chown": {
+      "arg_rules": [],
+      "base": [
+        "FS_CHOWN"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-R": [
+          "FS_DELETE_RECURSIVE"
+        ],
+        "-c": [],
+        "-f": [],
+        "-h": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "chown -R 0:0 /home"
+        ]
+      },
+      "value_flags": []
+    },
+    "cksum": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "cksum --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "cksum /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "clang": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "clang --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "column": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "column --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "column /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "comm": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "comm --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "comm /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "composer": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "composer --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "cp": {
+      "arg_rules": [],
+      "base": [
+        "FS_WRITE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--": [],
+        "--help": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-T": [],
+        "-a": [],
+        "-f": [],
+        "-i": [],
+        "-n": [],
+        "-p": [],
+        "-r": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "cp a.txt b.txt"
+        ]
+      },
+      "value_flags": []
+    },
+    "crontab": {
+      "arg_rules": [],
+      "base": [
+        "PERSISTENCE"
+      ],
+      "family": "scheduler",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--now": [],
+        "--user": [],
+        "-b": [],
+        "-c": [],
+        "-e": [],
+        "-f": [],
+        "-i": [],
+        "-l": [],
+        "-m": [],
+        "-r": [],
+        "-u": [],
+        "disable": [],
+        "enable": [],
+        "restart": [],
+        "start": [],
+        "stop": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "echo '@reboot bash /tmp/x' | crontab -"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-f",
+        "-c"
+      ]
+    },
+    "csh": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "csh script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    },
+    "curl": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--data": [],
+        "--fail": [],
+        "--header": [],
+        "--help": [],
+        "--insecure": [],
+        "--location": [],
+        "--output": [],
+        "--request": [],
+        "--silent": [],
+        "--version": [],
+        "-H": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-S": [],
+        "-X": [],
+        "-d": [],
+        "-f": [],
+        "-k": [],
+        "-o": [],
+        "-q": [],
+        "-s": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "curl -s https://example.com/x.sh"
+        ]
+      },
+      "value_flags": [
+        "-X",
+        "-H",
+        "-d",
+        "-o",
+        "-u",
+        "--data",
+        "--header",
+        "--request",
+        "--output"
+      ]
+    },
+    "cut": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "cut --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "cut /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "dash": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "dash script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    },
+    "date": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "date"
+        ]
+      },
+      "value_flags": []
+    },
+    "dd": {
+      "arg_rules": [
+        {
+          "add": [
+            "FS_DEVICE_WRITE",
+            "FS_DESTRUCTIVE"
+          ],
+          "id": "dd.device_write",
+          "match": "arg_prefix",
+          "reason": "dd writes directly to a device node",
+          "severity": "critical",
+          "values": [
+            "of=/dev/",
+            "of=/proc/",
+            "of=/sys/"
+          ]
+        },
+        {
+          "add": [
+            "FS_WRITE"
+          ],
+          "id": "dd.any_device",
+          "match": "arg_prefix",
+          "reason": "dd writes an explicit output file",
+          "severity": "high",
+          "values": [
+            "of="
+          ]
+        }
+      ],
+      "base": [
+        "FS_WRITE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "--version": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "dd if=/dev/zero of=/dev/sda bs=1M"
+        ]
+      },
+      "value_flags": []
+    },
+    "deno": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [
+          "CODE_EVAL"
+        ],
+        "-i": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "deno --version"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-c"
+      ]
+    },
+    "df": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "df --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "df /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "dig": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "dig example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "dirname": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "dirname --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "dirname /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "dnf": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "dnf --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "doas": {
+      "arg_rules": [],
+      "base": [
+        "PRIVILEGE_ESCALATION"
+      ],
+      "family": "privilege",
+      "flags": {
+        "--help": [],
+        "-E": [],
+        "-H": [],
+        "-b": [],
+        "-c": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sudo chmod -R 777 /etc"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-c"
+      ]
+    },
+    "docker": {
+      "arg_rules": [],
+      "base": [
+        "CLOUD_STATE_BULK"
+      ],
+      "family": "container",
+      "flags": {
+        "--all": [],
+        "--force": [],
+        "--help": [],
+        "--no-cache": [],
+        "--quiet": [],
+        "--rm": [],
+        "--version": [],
+        "--volumes": [
+          "CLOUD_STATE_BULK"
+        ],
+        "-a": [],
+        "-d": [],
+        "-f": [],
+        "-i": [],
+        "-p": [],
+        "-q": [],
+        "-t": [],
+        "-v": []
+      },
+      "operand_kind": "selector",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "docker system prune -af --volumes"
+        ]
+      },
+      "value_flags": [
+        "-p",
+        "-v",
+        "-e",
+        "--name"
+      ]
+    },
+    "du": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "du --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "du /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "echo": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "echo"
+        ]
+      },
+      "value_flags": []
+    },
+    "env": {
+      "arg_rules": [],
+      "base": [
+        "ENV_MUTATION"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-0": [],
+        "-i": [],
+        "-u": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "env FOO=bar ls"
+        ]
+      },
+      "value_flags": [
+        "-u"
+      ]
+    },
+    "eval": {
+      "arg_rules": [],
+      "base": [
+        "CODE_EVAL",
+        "CODE_EXEC_OPAQUE"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "eval /tmp/x"
+        ]
+      },
+      "value_flags": []
+    },
+    "exec": {
+      "arg_rules": [],
+      "base": [
+        "CODE_EVAL",
+        "CODE_EXEC_OPAQUE"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "exec /tmp/x"
+        ]
+      },
+      "value_flags": []
+    },
+    "export": {
+      "arg_rules": [],
+      "base": [
+        "ENV_MUTATION"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "export LD_PRELOAD=/tmp/lib.so"
+        ]
+      },
+      "value_flags": []
+    },
+    "false": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "false"
+        ]
+      },
+      "value_flags": []
+    },
+    "fdisk": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "fdisk /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "file": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "file --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "file /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "find": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "!": [],
+        "--help": [],
+        "-H": [],
+        "-L": [],
+        "-P": [],
+        "-a": [],
+        "-delete": [
+          "FS_DELETE"
+        ],
+        "-empty": [],
+        "-exec": [
+          "CODE_EXEC_OPAQUE"
+        ],
+        "-group": [],
+        "-iname": [],
+        "-maxdepth": [],
+        "-mindepth": [],
+        "-mtime": [],
+        "-name": [],
+        "-newer": [],
+        "-not": [],
+        "-o": [],
+        "-ok": [
+          "CODE_EXEC_OPAQUE"
+        ],
+        "-path": [],
+        "-perm": [],
+        "-print": [],
+        "-print0": [],
+        "-regex": [],
+        "-regextype": [],
+        "-size": [],
+        "-type": [],
+        "-user": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "find . -name '*.py' -print"
+        ],
+        "opaque": [
+          "find $DIR -delete"
+        ],
+        "positive": [
+          "find /var/log -type f -delete"
+        ]
+      },
+      "value_flags": [
+        "-type",
+        "-name",
+        "-iname",
+        "-path",
+        "-exec",
+        "-ok",
+        "-maxdepth",
+        "-mindepth",
+        "-size",
+        "-mtime",
+        "-newer",
+        "-user",
+        "-group",
+        "-perm",
+        "-regex",
+        "-regextype"
+      ]
+    },
+    "fish": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "fish script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    },
+    "free": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "free"
+        ]
+      },
+      "value_flags": []
+    },
+    "ftp": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ftp example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "g++": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "g++ --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "gcc": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "gcc --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "gem": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "gem --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "git": {
+      "arg_rules": [],
+      "base": [
+        "VCS_READ"
+      ],
+      "family": "vcs",
+      "flags": {
+        "--all": [],
+        "--amend": [],
+        "--force": [
+          "VCS_HISTORY_REWRITE"
+        ],
+        "--force-with-lease": [
+          "VCS_HISTORY_REWRITE"
+        ],
+        "--hard": [
+          "FS_DELETE"
+        ],
+        "--help": [],
+        "--no-verify": [],
+        "--prune": [],
+        "--tags": [],
+        "--version": [],
+        "-B": [],
+        "-D": [
+          "FS_DELETE"
+        ],
+        "-S": [],
+        "-a": [],
+        "-b": [],
+        "-d": [],
+        "-f": [
+          "VCS_HISTORY_REWRITE"
+        ],
+        "-i": [],
+        "-m": [],
+        "-p": [],
+        "-q": [],
+        "-s": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "git status"
+        ],
+        "opaque": [
+          "git push --force origin main"
+        ],
+        "positive": [
+          "git status"
+        ]
+      },
+      "value_flags": [
+        "-m",
+        "-b",
+        "-B",
+        "-u",
+        "-S"
+      ]
+    },
+    "go": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "go --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "grep": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--color": [],
+        "--help": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-E": [],
+        "-F": [],
+        "-R": [],
+        "-c": [],
+        "-e": [],
+        "-f": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-q": [],
+        "-r": [],
+        "-v": [],
+        "-w": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "grep -n foo README.md"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-f",
+        "-A",
+        "-B",
+        "-C"
+      ]
+    },
+    "gunzip": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "gunzip --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "gzip": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "gzip --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "head": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "head --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "head /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "hexdump": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "hexdump --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "hexdump /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "history": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "builtin",
+      "flags": {
+        "-a": [],
+        "-c": [
+          "EVIDENCE_DESTROY"
+        ],
+        "-d": [],
+        "-r": [],
+        "-w": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "history -c"
+        ]
+      },
+      "value_flags": []
+    },
+    "host": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "host example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "hostname": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "id": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "id"
+        ]
+      },
+      "value_flags": []
+    },
+    "java": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "java --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "javac": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "javac --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "join": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "join --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "join /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "jq": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "json",
+      "flags": {
+        "--arg": [],
+        "--help": [],
+        "-c": [],
+        "-e": [],
+        "-f": [],
+        "-r": [],
+        "-s": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "jq . package.json"
+        ]
+      },
+      "value_flags": [
+        "-f",
+        "--arg"
+      ]
+    },
+    "ksh": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "ksh script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    },
+    "kubectl": {
+      "arg_rules": [],
+      "base": [
+        "CLOUD_STATE_BULK"
+      ],
+      "family": "container",
+      "flags": {
+        "--all": [
+          "CLOUD_STATE_BULK"
+        ],
+        "--all-namespaces": [
+          "CLOUD_STATE_BULK"
+        ],
+        "--force": [
+          "CLOUD_STATE_BULK"
+        ],
+        "--grace-period=0": [
+          "CLOUD_STATE_BULK"
+        ],
+        "--help": [],
+        "--namespace": [],
+        "-f": [],
+        "-l": [],
+        "-n": [],
+        "-o": []
+      },
+      "operand_kind": "selector",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "kubectl delete pod --all --all-namespaces"
+        ]
+      },
+      "value_flags": [
+        "-f",
+        "-l",
+        "-n",
+        "-o",
+        "--namespace"
+      ]
+    },
+    "launchctl": {
+      "arg_rules": [],
+      "base": [
+        "PERSISTENCE"
+      ],
+      "family": "scheduler",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--now": [],
+        "--user": [],
+        "-b": [],
+        "-c": [],
+        "-e": [],
+        "-f": [],
+        "-i": [],
+        "-l": [],
+        "-m": [],
+        "-r": [],
+        "-u": [],
+        "disable": [],
+        "enable": [],
+        "restart": [],
+        "start": [],
+        "stop": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "echo '@reboot bash /tmp/x' | crontab -"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-f",
+        "-c"
+      ]
+    },
+    "less": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "less --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "less /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "ln": {
+      "arg_rules": [],
+      "base": [
+        "FS_WRITE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-f": [],
+        "-n": [],
+        "-s": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ln -s a b"
+        ]
+      },
+      "value_flags": []
+    },
+    "ls": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--help": [],
+        "--human-readable": [],
+        "--long": [],
+        "--recursive": [],
+        "--version": [],
+        "-1": [],
+        "-A": [],
+        "-F": [],
+        "-R": [],
+        "-S": [],
+        "-Z": [],
+        "-a": [],
+        "-d": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-r": [],
+        "-s": [],
+        "-t": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "ls --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "ls -la"
+        ]
+      },
+      "value_flags": []
+    },
+    "lua": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [
+          "CODE_EVAL"
+        ],
+        "-i": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "lua --version"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-c"
+      ]
+    },
+    "make": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "-B": [],
+        "-C": [],
+        "-f": [],
+        "-j": [],
+        "-n": [],
+        "-s": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "make -j2"
+        ]
+      },
+      "value_flags": [
+        "-j",
+        "-C",
+        "-f"
+      ]
+    },
+    "md5sum": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "md5sum --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "md5sum /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "mkdir": {
+      "arg_rules": [],
+      "base": [
+        "FS_WRITE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-m": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkdir -p build"
+        ]
+      },
+      "value_flags": [
+        "-m"
+      ]
+    },
+    "mkfifo": {
+      "arg_rules": [],
+      "base": [
+        "FS_WRITE"
+      ],
+      "family": "coreutils",
+      "flags": {},
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkfifo /tmp/p"
+        ]
+      },
+      "value_flags": []
+    },
+    "mkfs": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkfs /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "mkfs.btrfs": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkfs.btrfs /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "mkfs.ext3": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkfs.ext3 /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "mkfs.ext4": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkfs.ext4 /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "mkfs.xfs": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkfs.xfs /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "mkswap": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mkswap /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "more": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "more --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "more /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "mount": {
+      "arg_rules": [],
+      "base": [
+        "PRIVILEGE_ESCALATION"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-a": [],
+        "-o": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-w": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mount /dev/sdb1 /mnt"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-o"
+      ]
+    },
+    "mv": {
+      "arg_rules": [],
+      "base": [
+        "FS_WRITE",
+        "FS_DELETE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--": [],
+        "--help": [],
+        "-T": [],
+        "-f": [],
+        "-i": [],
+        "-n": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mv a.txt b.txt"
+        ]
+      },
+      "value_flags": []
+    },
+    "mysql": {
+      "arg_rules": [
+        {
+          "add": [
+            "DB_DESTRUCTIVE"
+          ],
+          "id": "mysql.drop",
+          "match": "any_arg_contains",
+          "reason": "SQL statement destroys database state",
+          "severity": "critical",
+          "values": [
+            "DROP DATABASE",
+            "DROP TABLE",
+            "TRUNCATE",
+            "DELETE FROM"
+          ]
+        }
+      ],
+      "base": [
+        "DB_DESTRUCTIVE"
+      ],
+      "family": "database",
+      "flags": {
+        "--help": [],
+        "-D": [],
+        "-P": [],
+        "-e": [],
+        "-h": [],
+        "-p": [],
+        "-u": []
+      },
+      "operand_kind": "sql",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "mysql -e \"DELETE FROM users WHERE 1=1\""
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-h",
+        "-P",
+        "-u",
+        "-D"
+      ]
+    },
+    "nc": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "nc example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "ncat": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ncat example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "netcat": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "netcat example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "nl": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "nl --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "nl /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "node": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [
+          "CODE_EVAL"
+        ],
+        "-i": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "node --version"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-c"
+      ]
+    },
+    "nohup": {
+      "arg_rules": [],
+      "base": [
+        "PERSISTENCE"
+      ],
+      "family": "scheduler",
+      "flags": {
+        "--help": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "nohup /tmp/x &"
+        ]
+      },
+      "value_flags": []
+    },
+    "npm": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "npm --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "nslookup": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "nslookup example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "od": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "od --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "od /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "openssl": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "openssl --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "parted": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "parted /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "paste": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "paste --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "paste /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "perl": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [
+          "CODE_EVAL"
+        ],
+        "-i": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "perl --version"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-c"
+      ]
+    },
+    "php": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [
+          "CODE_EVAL"
+        ],
+        "-i": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "php --version"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-c"
+      ]
+    },
+    "ping": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ping example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "pip": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "pip --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "pip3": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "pip3 --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "pkexec": {
+      "arg_rules": [],
+      "base": [
+        "PRIVILEGE_ESCALATION"
+      ],
+      "family": "privilege",
+      "flags": {
+        "--help": [],
+        "-E": [],
+        "-H": [],
+        "-b": [],
+        "-c": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sudo chmod -R 777 /etc"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-c"
+      ]
+    },
+    "pnpm": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "pnpm --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "poetry": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "poetry --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "printf": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "printf"
+        ]
+      },
+      "value_flags": []
+    },
+    "psql": {
+      "arg_rules": [
+        {
+          "add": [
+            "DB_DESTRUCTIVE"
+          ],
+          "id": "psql.drop",
+          "match": "any_arg_contains",
+          "reason": "SQL statement destroys database state",
+          "severity": "critical",
+          "values": [
+            "DROP DATABASE",
+            "DROP TABLE",
+            "TRUNCATE",
+            "DELETE FROM"
+          ]
+        }
+      ],
+      "base": [
+        "DB_DESTRUCTIVE"
+      ],
+      "family": "database",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-U": [],
+        "-c": [],
+        "-d": [],
+        "-f": [],
+        "-h": [],
+        "-p": [],
+        "-q": [],
+        "-t": [],
+        "-v": []
+      },
+      "operand_kind": "sql",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "psql -c \"DROP DATABASE prod\""
+        ]
+      },
+      "value_flags": [
+        "-c",
+        "-f",
+        "-h",
+        "-p",
+        "-U",
+        "-d",
+        "-v"
+      ]
+    },
+    "pwd": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [
+          "pwd --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "pwd"
+        ]
+      },
+      "value_flags": []
+    },
+    "python": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [
+          "CODE_EXEC_OPAQUE"
+        ],
+        "--help": [],
+        "--version": [],
+        "-B": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-m": [],
+        "-u": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "python -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "python -c 'print(1)'"
+        ]
+      },
+      "value_flags": [
+        "-c",
+        "-m"
+      ]
+    },
+    "python3": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [
+          "CODE_EXEC_OPAQUE"
+        ],
+        "--help": [],
+        "--version": [],
+        "-B": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-m": [],
+        "-u": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "python3 -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "python3 -c 'print(1)'"
+        ]
+      },
+      "value_flags": [
+        "-c",
+        "-m"
+      ]
+    },
+    "readlink": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "readlink --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "readlink /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "realpath": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "realpath --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "realpath /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "rev": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "rev --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "rev /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "rm": {
+      "arg_rules": [
+        {
+          "add": [
+            "FS_DESTRUCTIVE"
+          ],
+          "id": "rm.root_operand",
+          "match": "any_arg",
+          "reason": "recursive delete targets a filesystem root",
+          "severity": "critical",
+          "values": [
+            "/",
+            "~",
+            "/*",
+            "/.",
+            "/.."
+          ]
+        }
+      ],
+      "base": [
+        "FS_DELETE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--": [],
+        "--force": [],
+        "--help": [],
+        "--no-preserve-root": [
+          "FS_DESTRUCTIVE"
+        ],
+        "--one-file-system": [],
+        "--preserve-root": [],
+        "--recursive": [
+          "FS_DELETE_RECURSIVE"
+        ],
+        "--version": [],
+        "-R": [
+          "FS_DELETE_RECURSIVE"
+        ],
+        "-d": [],
+        "-f": [],
+        "-i": [],
+        "-r": [
+          "FS_DELETE_RECURSIVE"
+        ],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "rm --version"
+        ],
+        "opaque": [
+          "rm $TARGET"
+        ],
+        "positive": [
+          "rm -rf /tmp/x"
+        ]
+      },
+      "value_flags": []
+    },
+    "rmdir": {
+      "arg_rules": [],
+      "base": [
+        "FS_DELETE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "rmdir /tmp/x"
+        ]
+      },
+      "value_flags": []
+    },
+    "rsync": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "rsync example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "ruby": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [
+          "CODE_EVAL"
+        ],
+        "-i": [],
+        "-p": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ruby --version"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-c"
+      ]
+    },
+    "rustc": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "rustc --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "scp": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "scp example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "sed": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-E": [],
+        "-e": [],
+        "-f": [],
+        "-i": [
+          "FS_WRITE"
+        ],
+        "-n": [],
+        "-r": [],
+        "-s": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sed -n '1p' README.md"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-f"
+      ]
+    },
+    "seq": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "seq"
+        ]
+      },
+      "value_flags": []
+    },
+    "service": {
+      "arg_rules": [],
+      "base": [
+        "PERSISTENCE"
+      ],
+      "family": "scheduler",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--now": [],
+        "--user": [],
+        "-b": [],
+        "-c": [],
+        "-e": [],
+        "-f": [],
+        "-i": [],
+        "-l": [],
+        "-m": [],
+        "-r": [],
+        "-u": [],
+        "disable": [],
+        "enable": [],
+        "restart": [],
+        "start": [],
+        "stop": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "echo '@reboot bash /tmp/x' | crontab -"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-f",
+        "-c"
+      ]
+    },
+    "set": {
+      "arg_rules": [],
+      "base": [
+        "ENV_MUTATION"
+      ],
+      "family": "builtin",
+      "flags": {
+        "+e": [],
+        "+x": [],
+        "--": [],
+        "-a": [],
+        "-e": [],
+        "-o": [],
+        "-u": [],
+        "-x": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "set -e"
+        ]
+      },
+      "value_flags": []
+    },
+    "sftp": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sftp example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "sh": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "sh script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    },
+    "sha1sum": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "sha1sum --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "sha1sum /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "sha256sum": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "sha256sum --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "sha256sum /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "shred": {
+      "arg_rules": [],
+      "base": [
+        "FS_DELETE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-f": [],
+        "-n": [],
+        "-s": [],
+        "-u": [
+          "FS_DELETE"
+        ],
+        "-v": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "shred -n 3 -z -u /etc/secrets.key"
+        ]
+      },
+      "value_flags": [
+        "-n",
+        "-s"
+      ]
+    },
+    "sleep": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sleep"
+        ]
+      },
+      "value_flags": []
+    },
+    "socat": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "socat example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "sort": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "sort --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "sort /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "source": {
+      "arg_rules": [],
+      "base": [
+        "CODE_EVAL",
+        "CODE_EXEC_OPAQUE"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "source /tmp/x"
+        ]
+      },
+      "value_flags": []
+    },
+    "sqlite3": {
+      "arg_rules": [],
+      "base": [
+        "DB_DESTRUCTIVE"
+      ],
+      "family": "database",
+      "flags": {
+        "--help": [],
+        "-batch": [],
+        "-cmd": [],
+        "-init": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sqlite3 db.sqlite 'DROP TABLE users'"
+        ]
+      },
+      "value_flags": [
+        "-init",
+        "-cmd"
+      ]
+    },
+    "ssh": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ssh example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "stat": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "stat --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "stat /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "strings": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "strings --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "strings /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "su": {
+      "arg_rules": [],
+      "base": [
+        "PRIVILEGE_ESCALATION"
+      ],
+      "family": "privilege",
+      "flags": {
+        "--help": [],
+        "-E": [],
+        "-H": [],
+        "-b": [],
+        "-c": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sudo chmod -R 777 /etc"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-c"
+      ]
+    },
+    "sudo": {
+      "arg_rules": [],
+      "base": [
+        "PRIVILEGE_ESCALATION"
+      ],
+      "family": "privilege",
+      "flags": {
+        "--help": [],
+        "-E": [],
+        "-H": [],
+        "-b": [],
+        "-c": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "sudo chmod -R 777 /etc"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-c"
+      ]
+    },
+    "systemctl": {
+      "arg_rules": [],
+      "base": [
+        "PERSISTENCE"
+      ],
+      "family": "scheduler",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--now": [],
+        "--user": [],
+        "-b": [],
+        "-c": [],
+        "-e": [],
+        "-f": [],
+        "-i": [],
+        "-l": [],
+        "-m": [],
+        "-r": [],
+        "-u": [],
+        "disable": [],
+        "enable": [],
+        "restart": [],
+        "start": [],
+        "stop": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "echo '@reboot bash /tmp/x' | crontab -"
+        ]
+      },
+      "value_flags": [
+        "-u",
+        "-f",
+        "-c"
+      ]
+    },
+    "tac": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "tac --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "tac /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "tail": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "tail --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "tail /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "tar": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "tar --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "tcsh": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "tcsh script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    },
+    "tee": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "tee --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "tee /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "telnet": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "telnet example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "terraform": {
+      "arg_rules": [],
+      "base": [
+        "CLOUD_STATE_BULK"
+      ],
+      "family": "cloud",
+      "flags": {
+        "--help": [],
+        "-auto-approve": [],
+        "-force": [],
+        "-var": [],
+        "destroy": [
+          "CLOUD_STATE_BULK"
+        ]
+      },
+      "operand_kind": "selector",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "terraform destroy -auto-approve"
+        ]
+      },
+      "value_flags": [
+        "-var"
+      ]
+    },
+    "timeout": {
+      "arg_rules": [],
+      "base": [],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-k": [],
+        "-s": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "timeout 5 ls"
+        ]
+      },
+      "value_flags": [
+        "-s",
+        "-k"
+      ]
+    },
+    "touch": {
+      "arg_rules": [],
+      "base": [
+        "FS_WRITE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-a": [],
+        "-c": [],
+        "-d": [],
+        "-m": [],
+        "-r": [],
+        "-t": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "touch /tmp/x"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-d",
+        "-r"
+      ]
+    },
+    "tr": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "tr --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "tr /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "traceroute": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "-4": [],
+        "-6": [],
+        "-L": [],
+        "-P": [],
+        "-R": [],
+        "-a": [],
+        "-c": [],
+        "-e": [
+          "NET_FETCH_TO_EXEC"
+        ],
+        "-i": [],
+        "-l": [
+          "NET_LISTEN"
+        ],
+        "-n": [],
+        "-o": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-v": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "traceroute example.com"
+        ]
+      },
+      "value_flags": [
+        "-e",
+        "-p",
+        "-i",
+        "-o",
+        "-L",
+        "-R"
+      ]
+    },
+    "true": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "true"
+        ]
+      },
+      "value_flags": []
+    },
+    "truncate": {
+      "arg_rules": [],
+      "base": [
+        "FS_TRUNCATE",
+        "FS_WRITE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-c": [],
+        "-o": [],
+        "-s": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "truncate -s 0 /var/log/audit.log"
+        ]
+      },
+      "value_flags": [
+        "-s"
+      ]
+    },
+    "tsc": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "build",
+      "flags": {
+        "--help": [],
+        "--version": [],
+        "-I": [],
+        "-L": [],
+        "-O": [],
+        "-Wall": [],
+        "-c": [],
+        "-g": [],
+        "-l": [],
+        "-o": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "tsc --help"
+        ]
+      },
+      "value_flags": [
+        "-o",
+        "-I",
+        "-L",
+        "-l"
+      ]
+    },
+    "ulimit": {
+      "arg_rules": [],
+      "base": [
+        "RESOURCE_EXHAUSTION"
+      ],
+      "family": "builtin",
+      "flags": {
+        "-a": [],
+        "-c": [],
+        "-f": [],
+        "-n": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ulimit -n 1024"
+        ]
+      },
+      "value_flags": []
+    },
+    "umask": {
+      "arg_rules": [],
+      "base": [
+        "ENV_MUTATION"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "umask 022"
+        ]
+      },
+      "value_flags": []
+    },
+    "umount": {
+      "arg_rules": [],
+      "base": [
+        "PRIVILEGE_ESCALATION"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-a": [],
+        "-f": [],
+        "-l": [],
+        "-v": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "umount /mnt"
+        ]
+      },
+      "value_flags": []
+    },
+    "unalias": {
+      "arg_rules": [],
+      "base": [
+        "CODE_DYNAMIC_DISPATCH"
+      ],
+      "family": "builtin",
+      "flags": {
+        "-a": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "unalias -a"
+        ]
+      },
+      "value_flags": []
+    },
+    "uname": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "uname"
+        ]
+      },
+      "value_flags": []
+    },
+    "uniq": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "uniq --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "uniq /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "unset": {
+      "arg_rules": [],
+      "base": [
+        "ENV_MUTATION"
+      ],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "unset FOO"
+        ]
+      },
+      "value_flags": []
+    },
+    "unzip": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "unzip --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "uptime": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "uptime"
+        ]
+      },
+      "value_flags": []
+    },
+    "uudecode": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "uudecode --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "wc": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "wc --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "wc /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "wget": {
+      "arg_rules": [],
+      "base": [
+        "NET_OUTBOUND"
+      ],
+      "family": "network",
+      "flags": {
+        "--help": [],
+        "--output-document": [],
+        "--quiet": [],
+        "-N": [],
+        "-O": [],
+        "-c": [],
+        "-nv": [],
+        "-q": [],
+        "-qO-": [],
+        "-r": []
+      },
+      "operand_kind": "network",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "wget -qO- http://example.com/x.sh"
+        ]
+      },
+      "value_flags": [
+        "-O",
+        "--output-document"
+      ]
+    },
+    "whoami": {
+      "arg_rules": [],
+      "base": [],
+      "family": "builtin",
+      "flags": {},
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "whoami"
+        ]
+      },
+      "value_flags": []
+    },
+    "wipefs": {
+      "arg_rules": [],
+      "base": [
+        "FS_DEVICE_WRITE",
+        "FS_DESTRUCTIVE"
+      ],
+      "family": "storage",
+      "flags": {
+        "--help": [],
+        "-L": [],
+        "-V": [],
+        "-f": [],
+        "-q": [],
+        "-t": [],
+        "-y": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "wipefs /dev/sdb1"
+        ]
+      },
+      "value_flags": [
+        "-t",
+        "-L"
+      ]
+    },
+    "xargs": {
+      "arg_rules": [],
+      "base": [
+        "CODE_EXEC_OPAQUE"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--help": [],
+        "-0": [],
+        "-I": [],
+        "-P": [],
+        "-n": [],
+        "-r": [],
+        "-t": []
+      },
+      "operand_kind": "none",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "ls | xargs cat"
+        ]
+      },
+      "value_flags": [
+        "-n",
+        "-P",
+        "-I"
+      ]
+    },
+    "xxd": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "xxd --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "yarn": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "yarn --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "yes": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "coreutils",
+      "flags": {
+        "--all": [],
+        "--bytes": [],
+        "--help": [],
+        "--lines": [],
+        "--version": [],
+        "-A": [],
+        "-B": [],
+        "-C": [],
+        "-a": [],
+        "-b": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-h": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-p": [],
+        "-q": [],
+        "-r": [],
+        "-s": [],
+        "-t": [],
+        "-u": [],
+        "-v": [],
+        "-w": [],
+        "-z": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [
+          "yes --help"
+        ],
+        "opaque": [],
+        "positive": [
+          "yes /etc/hostname"
+        ]
+      },
+      "value_flags": []
+    },
+    "yum": {
+      "arg_rules": [],
+      "base": [
+        "PACKAGE_MUTATION"
+      ],
+      "family": "package",
+      "flags": {
+        "--force": [],
+        "--global": [],
+        "--help": [],
+        "--version": [],
+        "--yes": [],
+        "-D": [],
+        "-O": [],
+        "-S": [],
+        "-U": [],
+        "-e": [],
+        "-f": [],
+        "-g": [],
+        "-q": [],
+        "-v": [],
+        "-y": [],
+        "cache": [],
+        "clean": [],
+        "install": [],
+        "purge": [],
+        "remove": [],
+        "uninstall": [],
+        "update": [],
+        "upgrade": []
+      },
+      "operand_kind": "package",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "yum --help"
+        ]
+      },
+      "value_flags": []
+    },
+    "zip": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "encoder",
+      "flags": {
+        "--help": [],
+        "-A": [],
+        "-C": [],
+        "-base64": [],
+        "-c": [],
+        "-d": [],
+        "-e": [],
+        "-f": [],
+        "-in": [],
+        "-j": [],
+        "-k": [],
+        "-l": [],
+        "-o": [],
+        "-out": [],
+        "-p": [],
+        "-r": [],
+        "-t": [],
+        "-v": [],
+        "-x": [],
+        "-z": [],
+        "enc": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [],
+        "positive": [
+          "zip --help"
+        ]
+      },
+      "value_flags": [
+        "-C",
+        "-f",
+        "-o",
+        "-in",
+        "-out"
+      ]
+    },
+    "zsh": {
+      "arg_rules": [],
+      "base": [
+        "FS_READ"
+      ],
+      "family": "interpreter",
+      "flags": {
+        "-": [],
+        "--help": [],
+        "--version": [],
+        "-c": [
+          "CODE_EVAL"
+        ],
+        "-e": [],
+        "-i": [],
+        "-l": [],
+        "-n": [],
+        "-s": [],
+        "-v": [],
+        "-x": []
+      },
+      "operand_kind": "path",
+      "tests": {
+        "negative": [],
+        "opaque": [
+          "bash -c \"$SHELLCODE\""
+        ],
+        "positive": [
+          "zsh script.sh"
+        ]
+      },
+      "value_flags": [
+        "-c"
+      ]
+    }
+  },
+  "schema_version": 1,
+  "version": "0.1.0"
+}

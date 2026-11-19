@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blast-cert"
+version = "0.1.0"
+description = "Offline, filesystem-grounded pre-execution impact certificates for shell commands"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+keywords = ["shell", "security", "static-analysis", "agent", "capability", "offline"]
+
+[project.scripts]
+blast = "blast.cli:main"
+
+[tool.setuptools]
+packages = ["blast"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+blast = ["catalog.json", "policy.json"]

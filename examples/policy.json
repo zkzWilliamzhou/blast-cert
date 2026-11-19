@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0-strict-example",
+  "default": "deny",
+  "on_unknown": "deny",
+  "on_opaque": "deny",
+  "on_error": "deny",
+  "on_truncated": "deny",
+  "sensitive_escalation": "deny",
+  "rules": {
+    "FS_READ": "confirm",
+    "PROCESS_SPAWN": "allow",
+    "VCS_READ": "confirm",
+    "FS_WRITE": "confirm",
+    "FS_APPEND": "confirm",
+    "FS_TRUNCATE": "deny",
+    "FS_CHMOD": "deny",
+    "FS_CHOWN": "deny",
+    "NET_OUTBOUND": "deny",
+    "NET_LISTEN": "deny",
+    "PACKAGE_MUTATION": "deny",
+    "ENV_MUTATION": "deny",
+    "RESOURCE_EXHAUSTION": "deny"
+  }
+}

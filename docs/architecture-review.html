@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture review for blast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+    </script>
+    <style>
+      .seam { stroke-dasharray: 4 4; }
+      .leak { stroke: #dc2626; }
+      .deep { background: linear-gradient(135deg, #0f172a, #1e293b); }
+      .mass-iface { background: #fbbf24; }
+      .mass-impl { background: #0f172a; }
+      .band { border-left-width: 4px; }
+    </style>
+  </head>
+  <body class="bg-stone-50 text-slate-900 font-sans">
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+
+      <header class="space-y-4">
+        <div class="flex items-baseline justify-between flex-wrap gap-3">
+          <h1 class="font-serif text-4xl">Architecture review — blast</h1>
+          <span class="text-sm text-slate-500">2026-11-13 · improve-codebase-architecture</span>
+        </div>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs uppercase tracking-wider text-slate-600">
+          <span>■ solid box = module</span>
+          <span>┄ dashed = seam</span>
+          <span class="text-red-600">→ red = leakage</span>
+          <span>▉ dark = deep module</span>
+        </div>
+        <div class="rounded-lg border border-emerald-300 bg-emerald-50 p-4 text-sm">
+          <strong class="font-semibold">Identity gate.</strong>
+          Before this review, <span class="font-mono">audit/golden/identity.py</span>
+          compared 22 canonical outputs with <span class="font-mono">baseline.json</span>:
+          <strong>22/22 byte-identical</strong>. No interface changed. No implementation
+          changed. Candidates below are proposals only; the post-review proof is
+          also 22/22 with the same canonical digest, and round 9 of
+          <span class="font-mono">audit/rounds.md</span> accepted all 19 gates.
+          The claim that no function of the program changed is closed.
+        </div>
+      </header>
+
+      <section id="candidates" class="space-y-10">
+
+        <article id="c1" class="rounded-xl border border-slate-200 bg-white p-6 space-y-5">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <h2 class="font-serif text-2xl">Deepen the Name resolution seam</h2>
+            <div class="flex gap-2 text-xs uppercase tracking-wider">
+              <span class="rounded-full bg-emerald-100 text-emerald-800 px-3 py-1">Strong</span>
+              <span class="rounded-full bg-slate-100 text-slate-700 px-3 py-1">in-process</span>
+            </div>
+          </div>
+          <div class="font-mono text-sm text-slate-600">
+            blast/capabilities.py · blast/expand.py · blast/nested.py
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="rounded-lg border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wider text-slate-500 mb-3">Before</p>
+              <pre class="mermaid">
+                flowchart LR
+                  E[expand.py] --> C[capabilities.py]
+                  N[nested.py] --> C
+                  C -.leak.-> E
+                  C -.leak.-> N
+                  classDef leak stroke:#dc2626,stroke-width:2px;
+                  class C,E,N leak
+              </pre>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wider text-slate-500 mb-3">After</p>
+              <div class="deep rounded-lg text-white p-5 h-64 flex flex-col justify-between">
+                <div>
+                  <p class="text-xs uppercase tracking-wider text-slate-300">one interface</p>
+                  <p class="font-mono text-sm mt-1">resolve_name(word, assignments)</p>
+                </div>
+                <div class="text-xs text-slate-400 space-y-1">
+                  <p>implementation: dynamic · opaque · literal · hint tables</p>
+                  <p>adapters: capabilities.py · nested.py</p>
+                </div>
+                <p class="text-xs uppercase tracking-wider text-emerald-300">deep module</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm"><strong>Problem.</strong> Three modules each hold one fragment of dynamic-name knowledge, so reading one concept means bouncing across three seams.</p>
+          <p class="text-sm"><strong>Solution.</strong> One <span class="font-mono">resolve.py</span> module owns the narrow interface; <span class="font-mono">capabilities.py</span> and <span class="font-mono">nested.py</span> become adapters over it.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>locality: hints concentrate in one module</li>
+            <li>leverage: one interface, many call sites</li>
+            <li>interface shrinks; implementation absorbs tables</li>
+            <li>deletion test: deleting it moves complexity, not removes it</li>
+          </ul>
+        </article>
+
+        <article id="c2" class="rounded-xl border border-slate-200 bg-white p-6 space-y-5">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <h2 class="font-serif text-2xl">Shrink the Catalog interface</h2>
+            <div class="flex gap-2 text-xs uppercase tracking-wider">
+              <span class="rounded-full bg-amber-100 text-amber-800 px-3 py-1">Worth exploring</span>
+              <span class="rounded-full bg-slate-100 text-slate-700 px-3 py-1">local-substitutable</span>
+            </div>
+          </div>
+          <div class="font-mono text-sm text-slate-600">
+            blast/catalog.py · blast/catalog.json · blast/capabilities.py · tests/test_deletion.py
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="rounded-lg border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wider text-slate-500 mb-3">Before — shallow</p>
+              <div class="h-64 flex items-end justify-center gap-8 pb-4">
+                <div class="text-center">
+                  <div class="mass-iface w-16" style="height:150px"></div>
+                  <p class="text-xs uppercase tracking-wider mt-2">interface</p>
+                </div>
+                <div class="text-center">
+                  <div class="mass-impl w-16" style="height:170px"></div>
+                  <p class="text-xs uppercase tracking-wider mt-2">implementation</p>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wider text-slate-500 mb-3">After — deep</p>
+              <div class="h-64 flex items-end justify-center gap-8 pb-4">
+                <div class="text-center">
+                  <div class="mass-iface w-16" style="height:34px"></div>
+                  <p class="text-xs uppercase tracking-wider mt-2">interface</p>
+                </div>
+                <div class="text-center">
+                  <div class="mass-impl w-16" style="height:210px"></div>
+                  <p class="text-xs uppercase tracking-wider mt-2">implementation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm"><strong>Problem.</strong> <span class="font-mono">capabilities.py</span> reads raw <span class="font-mono">spec["base"]</span> and <span class="font-mono">spec["arg_rules"]</span>, so Catalog storage leaks across the seam.</p>
+          <p class="text-sm"><strong>Solution.</strong> Catalog exposes <span class="font-mono">effects_for(name, args)</span> and hides its JSON storage; the digest stays canonical.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>locality: rule shape lives in one module</li>
+            <li>leverage: deletion tests hit one interface</li>
+            <li>depth: short interface, tall implementation</li>
+          </ul>
+          <div class="rounded-lg bg-amber-50 border border-amber-300 p-3 text-sm">
+            ADR-0003 requires canonical digests. The candidate keeps the digest over
+            the same data; it does not reopen the decision.
+          </div>
+        </article>
+
+        <article id="c3" class="rounded-xl border border-slate-200 bg-white p-6 space-y-5">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <h2 class="font-serif text-2xl">Two adapters justify the serialization seam</h2>
+            <div class="flex gap-2 text-xs uppercase tracking-wider">
+              <span class="rounded-full bg-slate-200 text-slate-700 px-3 py-1">Speculative</span>
+              <span class="rounded-full bg-slate-100 text-slate-700 px-3 py-1">ports &amp; adapters</span>
+            </div>
+          </div>
+          <div class="font-mono text-sm text-slate-600">
+            blast/report.py · blast/receipt.py · blast/cli.py · blast/model.py
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="rounded-lg border border-slate-200 bg-white p-4 h-64 space-y-2">
+              <p class="text-xs uppercase tracking-wider text-slate-500">Before — thin bands</p>
+              <div class="band border-slate-300 bg-slate-50 h-8 flex items-center px-3 text-xs uppercase tracking-wider">cli.py</div>
+              <div class="band border-slate-300 bg-slate-50 h-8 flex items-center px-3 text-xs uppercase tracking-wider">report.py · canonical json</div>
+              <div class="band border-slate-300 bg-slate-50 h-8 flex items-center px-3 text-xs uppercase tracking-wider">receipt.py · canonical json</div>
+              <div class="band border-slate-300 bg-slate-50 h-8 flex items-center px-3 text-xs uppercase tracking-wider">model.py</div>
+            </div>
+            <div class="rounded-lg border border-slate-200 bg-white p-4 h-64 space-y-2">
+              <p class="text-xs uppercase tracking-wider text-slate-500">After — one thick band</p>
+              <div class="band border-slate-300 bg-slate-50 h-8 flex items-center px-3 text-xs uppercase tracking-wider">cli.py</div>
+              <div class="deep text-white rounded h-16 flex items-center justify-between px-4">
+                <span class="text-xs uppercase tracking-wider">serialize module</span>
+                <span class="font-mono text-xs">two adapters</span>
+              </div>
+              <div class="band border-slate-300 bg-slate-50 h-8 flex items-center px-3 text-xs uppercase tracking-wider">report adapter</div>
+              <div class="band border-slate-300 bg-slate-50 h-8 flex items-center px-3 text-xs uppercase tracking-wider">receipt adapter</div>
+            </div>
+          </div>
+          <p class="text-sm"><strong>Problem.</strong> <span class="font-mono">report.py</span> and <span class="font-mono">receipt.py</span> each repeat canonical serialization, so the same decision appears twice.</p>
+          <p class="text-sm"><strong>Solution.</strong> One module owns serialization; two adapters (human report, portable receipt) justify the seam.</p>
+          <ul class="text-sm list-disc pl-5 space-y-1">
+            <li>leverage: one implementation, two adapters</li>
+            <li>locality: digest rules stop leaking</li>
+            <li>deletion test: two adapters, so the seam is real</li>
+          </ul>
+        </article>
+
+      </section>
+
+      <section class="rounded-xl border border-slate-300 bg-white p-6 space-y-3">
+        <h2 class="font-serif text-2xl">ADR guard</h2>
+        <p class="text-sm">ADR-0001 (fail-closed), ADR-0002 (no execution), ADR-0003 (deterministic output) are not re-litigated. A proposed evidence cache keyed by filesystem mtime is rejected here: wall-clock values would enter the digest and break ADR-0003. The stat-keyed catalog cache in <span class="font-mono">catalog.py</span> keeps mtime outside every digest and is already measured by round 8.</p>
+      </section>
+
+      <section id="top-recommendation" class="rounded-xl deep text-white p-8 space-y-3">
+        <p class="text-xs uppercase tracking-wider text-emerald-300">Top recommendation</p>
+        <h2 class="font-serif text-3xl">Deepen the Name resolution seam</h2>
+        <p class="text-sm text-slate-200">The hottest modules are the ones the audit kept revising. One interface concentrates dynamic-name knowledge and gives every future change one place to test. <a class="text-emerald-300 underline" href="#c1">Go to candidate</a></p>
+        <p class="text-xs text-slate-400">Proposals only. Post-architecture identity proof: 22/22 byte-identical. See audit/golden/identity-proof.json and round 9 in audit/rounds.md.</p>
+      </section>
+
+    </main>
+  </body>
+</html>

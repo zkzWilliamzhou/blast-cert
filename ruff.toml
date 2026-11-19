@@ -1,0 +1,7 @@
+target-version = "py38"
+line-length = 110
+exclude = ["skills-vendor", "docs", "audit", ".git", "__pycache__"]
+
+[lint]
+select = ["E", "F", "I", "B", "EXE"]
+ignore = ["E501", "B008", "EXE002"]
